@@ -5,9 +5,9 @@ from baml_client.sync_client import b
 from baml_client.types import Resume
 import baml_util as bu
 
-def scan_receipt_url(url: str):
+def scan_appointment_url(url: str):
     """
-    Submit a receipt image URL to be scanned and processed.
+    Submit an image URL of an appointment reminder card to be scanned and processed.
 
     - **Returns**: The filename, format, and metadata of the image.
     """
@@ -19,9 +19,41 @@ def scan_receipt_url(url: str):
         return {"error": f"Failed to extract receipt from image: {e}"}
     return output
 
+def scan_nutrition_url(url: str):
+    """
+    Submit an image URL of a nutritional value label to be scanned and processed.
+
+    - **Returns**: The filename, format, and metadata of the image.
+    """
+
+    try:
+        output = bu.extract_nutrition_from_url(url)
+    except Exception as e:
+        logging.error(e)
+        return {"error": f"Failed to extract receipt from image: {e}"}
+    return output
+
+def scan_package_url(url: str):
+    """
+    Submit an image URL of a drop off package receipt to be scanned and processed.
+
+    - **Returns**: The filename, format, and metadata of the image.
+    """
+
+    try:
+        output = bu.extract_package_from_url(url)
+    except Exception as e:
+        logging.error(e)
+        return {"error": f"Failed to extract receipt from image: {e}"}
+    return output
+
 def main():
     """Main entry point for the script."""
-    print(scan_receipt_url("https://baml-testing-idp-image-to-json.s3.us-east-1.amazonaws.com/appointment.jpg"))
+    print(scan_appointment_url("https://baml-testing-idp-image-to-json.s3.us-east-1.amazonaws.com/appointment.jpg"))
+    print("\n\n")
+    print(scan_nutrition_url("https://baml-testing-idp-image-to-json.s3.us-east-1.amazonaws.com/nutrition.jpg"))
+    print("\n\n")
+    print(scan_package_url("https://baml-testing-idp-image-to-json.s3.us-east-1.amazonaws.com/package.jpg"))
 
 
 if __name__ == '__main__':
