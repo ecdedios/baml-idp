@@ -27,7 +27,7 @@ def extract_nutrition_from_url(url: str):
         url (str): The URL of a nutritional value label image.
 
     Returns:
-        dict: The receipt data. See the baml_src/idp.baml file for the structure of the nutritional value data.
+        dict: The nutrition data. See the baml_src/idp.baml file for the structure of the nutritional value data.
 
     Raises:
         BamlValidationError: If the llm read of the image could not be parsed into the expected data model.
@@ -51,4 +51,21 @@ def extract_package_from_url(url: str):
     """
     img = Image.from_url(url)
     output = b.ExtractDropOffPackageReceiptFromImage(img)
+    return output
+
+def extract_info_from_url(url: str):
+    """
+    Extracts details from an image at a URL.
+
+    Args:
+        url (str): The URL of a nutritional value label image.
+
+    Returns:
+        dict: The receipt data. See the baml_src/idp.baml file for the structure of the nutritional value data.
+
+    Raises:
+        BamlValidationError: If the llm read of the image could not be parsed into the expected data model.
+    """
+    img = Image.from_url(url)
+    output = b.ChooseATool(img)
     return output

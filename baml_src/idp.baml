@@ -49,6 +49,7 @@ class DropOffPackageReceipt {
   total_packages_ui string @description("unit of issue")
 }
 
+
 // FUNCTIONS
 
 function ExtractAppointmentFromImage(appointment_card: image) -> Appointment {
@@ -87,6 +88,21 @@ function ExtractDropOffPackageReceiptFromImage(package_label: image) -> DropOffP
   "#
 }
 
+function ChooseATool(user_image: image) -> Appointment | NutritionLabel| DropOffPackageReceipt {
+client "openai/gpt-4o"
+prompt #"
+    {{_.role("user")}}
+
+    Given an image, extract info:
+    {{ user_image }}
+
+    {{ ctx.output_format }}
+  "#
+}
+
+
+
+
 // TESTS
 
 test Test_APPOINTMENT {
@@ -112,6 +128,15 @@ functions [ExtractDropOffPackageReceiptFromImage]
   args {
     package_label {
       url "https://baml-testing-idp-image-to-json.s3.us-east-1.amazonaws.com/package.jpg"
+    }
+  }
+}
+
+test Test_TOOL {
+functions [ChooseATool]
+  args {
+    user_image {
+      url "https://baml-testing-idp-image-to-json.s3.us-east-1.amazonaws.com/nutrition.jpg"
     }
   }
 }

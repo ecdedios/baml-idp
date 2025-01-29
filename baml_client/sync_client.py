@@ -47,6 +47,29 @@ class BamlSyncClient:
       return self.__stream_client
 
     
+    def ChooseATool(
+        self,
+        user_image: baml_py.Image,
+        baml_options: BamlCallOptions = {},
+    ) -> Union[types.Appointment, types.NutritionLabel, types.DropOffPackageReceipt]:
+      __tb__ = baml_options.get("tb", None)
+      if __tb__ is not None:
+        tb = __tb__._tb # type: ignore (we know how to use this private attribute)
+      else:
+        tb = None
+      __cr__ = baml_options.get("client_registry", None)
+
+      raw = self.__runtime.call_function_sync(
+        "ChooseATool",
+        {
+          "user_image": user_image,
+        },
+        self.__ctx_manager.get(),
+        tb,
+        __cr__,
+      )
+      return cast(Union[types.Appointment, types.NutritionLabel, types.DropOffPackageReceipt], raw.cast_to(types, types))
+    
     def ExtractAppointmentFromImage(
         self,
         appointment_card: baml_py.Image,
@@ -150,6 +173,36 @@ class BamlStreamClient:
       self.__runtime = runtime
       self.__ctx_manager = ctx_manager
 
+    
+    def ChooseATool(
+        self,
+        user_image: baml_py.Image,
+        baml_options: BamlCallOptions = {},
+    ) -> baml_py.BamlSyncStream[Optional[Union[partial_types.Appointment, partial_types.NutritionLabel, partial_types.DropOffPackageReceipt]], Union[types.Appointment, types.NutritionLabel, types.DropOffPackageReceipt]]:
+      __tb__ = baml_options.get("tb", None)
+      if __tb__ is not None:
+        tb = __tb__._tb # type: ignore (we know how to use this private attribute)
+      else:
+        tb = None
+      __cr__ = baml_options.get("client_registry", None)
+
+      raw = self.__runtime.stream_function_sync(
+        "ChooseATool",
+        {
+          "user_image": user_image,
+        },
+        None,
+        self.__ctx_manager.get(),
+        tb,
+        __cr__,
+      )
+
+      return baml_py.BamlSyncStream[Optional[Union[partial_types.Appointment, partial_types.NutritionLabel, partial_types.DropOffPackageReceipt]], Union[types.Appointment, types.NutritionLabel, types.DropOffPackageReceipt]](
+        raw,
+        lambda x: cast(Optional[Union[partial_types.Appointment, partial_types.NutritionLabel, partial_types.DropOffPackageReceipt]], x.cast_to(types, partial_types)),
+        lambda x: cast(Union[types.Appointment, types.NutritionLabel, types.DropOffPackageReceipt], x.cast_to(types, types)),
+        self.__ctx_manager.get(),
+      )
     
     def ExtractAppointmentFromImage(
         self,
