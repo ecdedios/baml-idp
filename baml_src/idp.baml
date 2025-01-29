@@ -29,7 +29,7 @@ test Test_APPOINTMENT {
 functions [ExtractAppointmentFromImage]
   args {
     appointment_card {
-      url "https://github.com/ecdedios/baml-idp/blob/main/input/appointment.jpg"
+      url "https://github.com/ecdedios/baml-idp/blob/main/input/appointment.png"
     }
   }
 }
