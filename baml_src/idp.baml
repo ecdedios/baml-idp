@@ -28,6 +28,27 @@ class NutritionLabel {
   protein_dv float? @description("daily value expressed in a percentage")
 }
 
+class ReceiptItem {
+  tracking_number string @alias("tracking")
+  weight float
+  weight_ui string @description("unit of issue")
+}
+
+class DropOffPackageReceipt {
+  line_item ReceiptItem[]
+  location string @alias("store")
+  address string @description("address of the store")
+  day_of_week string
+  day int
+  month string
+  year int
+  hour int
+  minute int
+  ampm string
+  total_packages int
+  total_packages_ui string @description("unit of issue")
+}
+
 // FUNCTIONS
 
 function ExtractAppointmentFromImage(appointment_card: image) -> Appointment {
@@ -54,6 +75,18 @@ function ExtractNutritionLabelFromImage(nutrition_label: image) -> NutritionLabe
   "#
 }
 
+function ExtractDropOffPackageReceiptFromImage(package_label: image) -> DropOffPackageReceipt {
+  client "openai/gpt-4o"
+  prompt #"
+    {{_.role("user")}}
+
+    Extract the name, description, and nutritional value details from this image:
+    {{ package_label }}
+
+    {{ ctx.output_format }}
+  "#
+}
+
 // TESTS
 
 test Test_APPOINTMENT {
@@ -70,6 +103,15 @@ functions [ExtractNutritionLabelFromImage]
   args {
     nutrition_label {
       url "https://baml-testing-idp-image-to-json.s3.us-east-1.amazonaws.com/nutrition.jpg"
+    }
+  }
+}
+
+test Test_PACKAGE {
+functions [ExtractDropOffPackageReceiptFromImage]
+  args {
+    package_label {
+      url "https://baml-testing-idp-image-to-json.s3.us-east-1.amazonaws.com/package.jpg"
     }
   }
 }
