@@ -29,7 +29,7 @@ test Test_APPOINTMENT {
 functions [ExtractAppointmentFromImage]
   args {
     appointment_card {
-      url "https://github.com/ecdedios/baml-idp/blob/main/input/appointment.png"
+      url "https://baml-testing-idp-image-to-json.s3.us-east-1.amazonaws.com/appointment.jpg"
     }
   }
 }
