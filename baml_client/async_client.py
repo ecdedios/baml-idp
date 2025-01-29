@@ -73,6 +73,29 @@ class BamlAsyncClient:
       )
       return cast(types.Appointment, raw.cast_to(types, types))
     
+    async def ExtractNutritionLabelFromImage(
+        self,
+        nutrition_label: baml_py.Image,
+        baml_options: BamlCallOptions = {},
+    ) -> types.NutritionLabel:
+      __tb__ = baml_options.get("tb", None)
+      if __tb__ is not None:
+        tb = __tb__._tb # type: ignore (we know how to use this private attribute)
+      else:
+        tb = None
+      __cr__ = baml_options.get("client_registry", None)
+
+      raw = await self.__runtime.call_function(
+        "ExtractNutritionLabelFromImage",
+        {
+          "nutrition_label": nutrition_label,
+        },
+        self.__ctx_manager.get(),
+        tb,
+        __cr__,
+      )
+      return cast(types.NutritionLabel, raw.cast_to(types, types))
+    
     async def ExtractResume(
         self,
         resume: str,
@@ -134,6 +157,36 @@ class BamlStreamClient:
         raw,
         lambda x: cast(partial_types.Appointment, x.cast_to(types, partial_types)),
         lambda x: cast(types.Appointment, x.cast_to(types, types)),
+        self.__ctx_manager.get(),
+      )
+    
+    def ExtractNutritionLabelFromImage(
+        self,
+        nutrition_label: baml_py.Image,
+        baml_options: BamlCallOptions = {},
+    ) -> baml_py.BamlStream[partial_types.NutritionLabel, types.NutritionLabel]:
+      __tb__ = baml_options.get("tb", None)
+      if __tb__ is not None:
+        tb = __tb__._tb # type: ignore (we know how to use this private attribute)
+      else:
+        tb = None
+      __cr__ = baml_options.get("client_registry", None)
+
+      raw = self.__runtime.stream_function(
+        "ExtractNutritionLabelFromImage",
+        {
+          "nutrition_label": nutrition_label,
+        },
+        None,
+        self.__ctx_manager.get(),
+        tb,
+        __cr__,
+      )
+
+      return baml_py.BamlStream[partial_types.NutritionLabel, types.NutritionLabel](
+        raw,
+        lambda x: cast(partial_types.NutritionLabel, x.cast_to(types, partial_types)),
+        lambda x: cast(types.NutritionLabel, x.cast_to(types, types)),
         self.__ctx_manager.get(),
       )
     

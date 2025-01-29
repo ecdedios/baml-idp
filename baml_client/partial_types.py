@@ -38,6 +38,23 @@ class Appointment(BaseModel):
     minute: Optional[int] = None
     ampm: Optional[str] = None
 
+class NutritionLabel(BaseModel):
+    product: Optional[str] = None
+    description: Optional[str] = None
+    calories: Optional[int] = None
+    fat: Optional[int] = None
+    fat_ui: Optional[str] = None
+    fat_dv: Optional[float] = None
+    sodium: Optional[int] = None
+    sodium_ui: Optional[str] = None
+    sodium_dv: Optional[float] = None
+    carb: Optional[int] = None
+    carb_ui: Optional[str] = None
+    carb_dv: Optional[float] = None
+    protein: Optional[int] = None
+    protein_ui: Optional[str] = None
+    protein_dv: Optional[float] = None
+
 class Resume(BaseModel):
     name: Optional[str] = None
     email: Optional[str] = None
