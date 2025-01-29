@@ -9,12 +9,26 @@
 [BAML Homepage](https://www.boundaryml.com)  
 [Python Installation Instuctions](https://docs.boundaryml.com/guide/installation-language/python)
 
+## Screenshots
+
+![Running the script](https://github.com/ecdedios/baml-idp/blob/main/screenshots/Screenshot%202025-01-29%20010757.png)
+
+...
+
+![Running the test](https://github.com/ecdedios/baml-idp/blob/main/screenshots/Screenshot%202025-01-29%20011149.png)
+
+...
+
+![Token visualization](https://github.com/ecdedios/baml-idp/blob/main/screenshots/Screenshot%202025-01-29%20011239.png)
+
 ## Usage
 
 Some technologies used:
 
 - baml-py
 - notebook
+
+To see the project in action, open and run the notebooks or execute `python main.py` in the terminal.
 
 ## Meta
 
