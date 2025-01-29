@@ -6,7 +6,7 @@
 
 ## Documentation
 
-[BAML Homepage](https://www.boundaryml.com)
+[BAML Homepage](https://www.boundaryml.com)  
 [Python Installation Instuctions](https://docs.boundaryml.com/guide/installation-language/python)
 
 ## Usage
@@ -14,6 +14,7 @@
 Some technologies used:
 
 - baml-py
+- notebook
 
 ## Meta
 
