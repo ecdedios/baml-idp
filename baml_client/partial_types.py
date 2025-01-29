@@ -29,9 +29,17 @@ from .types import Checked, Check
 ###############################################################################
 
 
+class Appointment(BaseModel):
+    day_of_week: Optional[str] = None
+    month: Optional[str] = None
+    date: Optional[int] = None
+    year: Optional[int] = None
+    hour: Optional[int] = None
+    minute: Optional[int] = None
+    ampm: Optional[str] = None
+
 class Resume(BaseModel):
     name: Optional[str] = None
     email: Optional[str] = None
     experience: List[Optional[str]]
     skills: List[Optional[str]]
-

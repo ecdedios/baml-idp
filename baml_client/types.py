@@ -39,9 +39,17 @@ def all_succeeded(checks: Dict[CheckName, Check]) -> bool:
 
 
 
+class Appointment(BaseModel):
+    day_of_week: str
+    month: str
+    date: int
+    year: int
+    hour: int
+    minute: int
+    ampm: str
+
 class Resume(BaseModel):
     name: str
     email: str
     experience: List[str]
     skills: List[str]
-
