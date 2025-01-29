@@ -16,7 +16,7 @@ def scan_appointment_url(url: str):
         output = bu.extract_appointment_from_url(url)
     except Exception as e:
         logging.error(e)
-        return {"error": f"Failed to extract receipt from image: {e}"}
+        return {"error": f"Failed to extract appointment details from image: {e}"}
     return output
 
 def scan_nutrition_url(url: str):
@@ -30,7 +30,7 @@ def scan_nutrition_url(url: str):
         output = bu.extract_nutrition_from_url(url)
     except Exception as e:
         logging.error(e)
-        return {"error": f"Failed to extract receipt from image: {e}"}
+        return {"error": f"Failed to extract nutritional value details from image: {e}"}
     return output
 
 def scan_package_url(url: str):
@@ -44,7 +44,7 @@ def scan_package_url(url: str):
         output = bu.extract_package_from_url(url)
     except Exception as e:
         logging.error(e)
-        return {"error": f"Failed to extract receipt from image: {e}"}
+        return {"error": f"Failed to extract drop off package receipt information from image: {e}"}
     return output
 
 def main():
