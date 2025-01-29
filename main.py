@@ -5,6 +5,11 @@ from baml_client.sync_client import b
 from baml_client.types import Resume
 import baml_util as bu
 
+from fastapi import FastAPI, File, UploadFile
+
+app = FastAPI()
+
+@app.post("/appointment")
 def scan_appointment_url(url: str):
     """
     Submit an image URL of an appointment reminder card to be scanned and processed.
@@ -19,6 +24,7 @@ def scan_appointment_url(url: str):
         return {"error": f"Failed to extract appointment details from image: {e}"}
     return output
 
+@app.post("/nutrition")
 def scan_nutrition_url(url: str):
     """
     Submit an image URL of a nutritional value label to be scanned and processed.
@@ -33,6 +39,7 @@ def scan_nutrition_url(url: str):
         return {"error": f"Failed to extract nutritional value details from image: {e}"}
     return output
 
+@app.post("/package")
 def scan_package_url(url: str):
     """
     Submit an image URL of a drop off package receipt to be scanned and processed.

@@ -27,6 +27,7 @@ Some technologies used:
 
 - baml-py
 - notebook
+- fastapi
 
 To see the project in action, open and run the notebooks or execute `python main.py` in the terminal.
 
