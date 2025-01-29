@@ -13,8 +13,10 @@ class Appointment {
 function ExtractAppointmentFromImage(appointment_card: image) -> Appointment {
   // Specify a client as provider/model-name
   // you can use custom LLM params with a custom client name from clients.baml like "client CustomHaiku"
-  client "openai/gpt-4oMini" // Set OPENAI_API_KEY to use this client.
+  client "openai/gpt-4o" // Set OPENAI_API_KEY to use this client.
   prompt #"
+    {{_.role("user")}}
+
     Extract details from this image of an appointment card reminder:
     {{ appointment_card }}
 
@@ -26,8 +28,8 @@ function ExtractAppointmentFromImage(appointment_card: image) -> Appointment {
 test Test_APPOINTMENT {
 functions [ExtractAppointmentFromImage]
   args {
-    img {
-      url "#"
+    appointment_card {
+      url "https://github.com/ecdedios/baml-idp/blob/main/input/appointment.jpg"
     }
   }
 }
