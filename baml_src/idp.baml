@@ -24,7 +24,7 @@ class NutritionLabel {
   carb_ui string @description("unit per issue")
   carb_dv float @description("daily value expressed in a percentage")
   protein int
-  protein_ui string
+  protein_ui string @description("unit per issue")
   protein_dv float? @description("daily value expressed in a percentage")
 }
 
@@ -81,7 +81,7 @@ function ExtractDropOffPackageReceiptFromImage(package_label: image) -> DropOffP
   prompt #"
     {{_.role("user")}}
 
-    Extract the name, description, and nutritional value details from this image:
+    Extract the details from this image:
     {{ package_label }}
 
     {{ ctx.output_format }}
