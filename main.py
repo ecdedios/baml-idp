@@ -54,6 +54,21 @@ def scan_package_url(url: str):
         return {"error": f"Failed to extract drop off package receipt information from image: {e}"}
     return output
 
+@app.post("/tool")
+def scan_image_url(url: str):
+    """
+    Submit an image URL to be scanned and processed.
+
+    - **Returns**: The filename, format, and metadata of the image.
+    """
+
+    try:
+        output = bu.extract_info_from_url(url)
+    except Exception as e:
+        logging.error(e)
+        return {"error": f"Failed to extract information from image: {e}"}
+    return output
+
 def main():
     """Main entry point for the script."""
     print(scan_appointment_url("https://baml-testing-idp-image-to-json.s3.us-east-1.amazonaws.com/appointment.jpg"))
