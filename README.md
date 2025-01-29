@@ -7,6 +7,7 @@
 ## Documentation
 
 [BAML Homepage](https://www.boundaryml.com)
+[Python Installation Instuctions](https://docs.boundaryml.com/guide/installation-language/python)
 
 ## Usage
 
