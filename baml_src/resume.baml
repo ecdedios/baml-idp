@@ -24,17 +24,18 @@ test vaibhav_resume {
   functions [ExtractResume]
   args {
     resume #"
-      Vaibhav Gupta
-      vbv@boundaryml.com
+      Ednalyn C. De Dios
+      ednalyn.dedios@gmail.com
 
       Experience:
-      - Founder at BoundaryML
-      - CV Engineer at Google
-      - CV Engineer at Microsoft
+      - Machine Learning Engineer at Microsoft through Insight Global
+      - Machine Learning Engineer at Merck through Insight Global
+      - Senior Associate Data Scientist at TaskUs
 
       Skills:
-      - Rust
-      - C++
+      - Python
+      - SQL
+      - Power BI
     "#
   }
 }

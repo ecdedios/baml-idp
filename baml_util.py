@@ -2,7 +2,7 @@ from baml_py import Image
 from baml_client import b
 
 
-async def extract_receipt_from_url(url: str):
+def extract_appointment_from_url(url: str):
     """
     Extracts an image of a receipt stored at a URL.
 
@@ -20,7 +20,7 @@ async def extract_receipt_from_url(url: str):
     return output
 
 
-async def extract_receipt_from_base64(base64: str):
+def extract_appointment_from_base64(base64: str):
     """Extract a receipt from a base 64 image file.
 
     Args:
