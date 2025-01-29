@@ -1,4 +1,5 @@
-// Defining a data model.
+// MODELS
+
 class Appointment {
   day_of_week string
   month string
@@ -9,7 +10,8 @@ class Appointment {
   ampm string
 }
 
-// Create a function to extract the resume from a string.
+// FUNCTIONS
+
 function ExtractAppointmentFromImage(appointment_card: image) -> Appointment {
   // Specify a client as provider/model-name
   // you can use custom LLM params with a custom client name from clients.baml like "client CustomHaiku"
@@ -25,6 +27,7 @@ function ExtractAppointmentFromImage(appointment_card: image) -> Appointment {
 }
 
 // TESTS
+
 test Test_APPOINTMENT {
 functions [ExtractAppointmentFromImage]
   args {
