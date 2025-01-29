@@ -1,1 +1,2 @@
 baml-py
+pydantic
