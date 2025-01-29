@@ -33,7 +33,7 @@ if __name__ == '__main__':
 
 __author__ = "Ednalyn C. De Dios, et al."
 __copyright__ = "Copyright 2025, IDP with BAML Project"
-__credits__ = ["Vaibahv @ BoundaryML"]
+__credits__ = ["Vaibhav @ BoundaryML - https://www.linkedin.com/in/vaigup/"]
 __license__ = "MIT"
 __version__ = "1.0.0"
 __maintainer__ = "Ednalyn C. De Dios"
