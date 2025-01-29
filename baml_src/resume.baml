@@ -20,7 +20,7 @@ function ExtractResume(resume: string) -> Resume {
 }
 
 // Test the function with a sample resume. Open the VSCode playground to run this.
-test vaibhav_resume {
+test ednalyn_resume {
   functions [ExtractResume]
   args {
     resume #"
